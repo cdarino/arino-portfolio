@@ -20,7 +20,7 @@ export default function FooterGlow() {
       `}</style>
 
       <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-8 rounded-2xl border border-white/10 bg-zinc-950/70 px-6 py-10 backdrop-blur-md md:flex-row md:items-start md:justify-between md:gap-12">
-        <div className="flex flex-col items-center md:items-start pl-6">
+        <div className="flex flex-col items-center md:items-start px-8 md:px-6">
           <a
             href="#top"
             className="mb-4 flex items-center gap-3"
@@ -44,7 +44,7 @@ export default function FooterGlow() {
             I create clean, modern web experiences with an eye for
             detail, accessibility, and performance.
           </p>
-          <div className="mt-2 flex gap-3 text-cyan-300">
+          <div className="mt-2 flex justify-center gap-3 text-cyan-300 md:justify-start">
             <a href="https://github.com/cdarino" aria-label="GitHub" className="transition hover:text-white">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 .29a12 12 0 00-3.797 23.401c.6.11.82-.26.82-.577v-2.17c-3.338.726-4.042-1.415-4.042-1.415-.546-1.387-1.332-1.756-1.332-1.756-1.09-.744.084-.729.084-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.306 3.495.999.106-.775.418-1.307.76-1.608-2.665-.301-5.466-1.332-5.466-5.933 0-1.31.469-2.381 1.236-3.222-.123-.303-.535-1.523.117-3.176 0 0 1.007-.322 3.301 1.23a11.502 11.502 0 016.002 0c2.292-1.552 3.297-1.23 3.297-1.23.654 1.653.242 2.873.119 3.176.77.841 1.235 1.912 1.235 3.222 0 4.61-2.805 5.629-5.476 5.925.429.369.813 1.096.813 2.211v3.285c0 .32.217.694.825.576A12 12 0 0012 .29"></path>
@@ -53,7 +53,7 @@ export default function FooterGlow() {
           </div>
         </div>
 
-        <nav className="flex w-full flex-col gap-3 text-center px-6 md:w-auto md:text-left">
+        <nav className="flex w-full flex-col gap-3 text-center px-8 md:px-6 md:w-auto md:text-left">
           <div className="mb-1 text-xs font-semibold tracking-widest text-cyan-300 uppercase">
             Links
           </div>
