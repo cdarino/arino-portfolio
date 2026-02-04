@@ -85,7 +85,7 @@ const HeroSection: React.FC = () => {
         <img
           src="/Cedric.jpg"
           alt="avatar"
-          className="relative h-[22rem] w-[22rem] rounded-full border-4 border-zinc-800 shadow-xl z-10"
+          className="relative h-[22rem] w-[22rem] rounded-full border-4 border-zinc-800 shadow-xl z-10 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_25px_70px_-30px_rgba(56,189,248,0.5)]"
         />
       </div>
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight font-geist drop-shadow-lg">
