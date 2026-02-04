@@ -24,7 +24,10 @@ export default function FooterGlow() {
           <a
             href="#top"
             className="mb-4 flex items-center gap-3"
-            onClick={() => window.dispatchEvent(new CustomEvent("nav-select", { detail: "home" }))}
+            onClick={(event) => {
+              event.preventDefault();
+              window.dispatchEvent(new CustomEvent("nav-scroll", { detail: "home" }));
+            }}
           >
             <span className="h-9 w-9 rounded-full bg-gradient-to-tr from-cyan-500 via-purple-500 to-indigo-500 p-[2px]">
               <img
@@ -59,7 +62,10 @@ export default function FooterGlow() {
               <a
                 href="#top"
                 className="transition hover:text-white"
-                onClick={() => window.dispatchEvent(new CustomEvent("nav-select", { detail: "home" }))}
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.dispatchEvent(new CustomEvent("nav-scroll", { detail: "home" }));
+                }}
               >
                 Home
               </a>
@@ -68,7 +74,10 @@ export default function FooterGlow() {
               <a
                 href="#about"
                 className="transition hover:text-white"
-                onClick={() => window.dispatchEvent(new CustomEvent("nav-select", { detail: "about" }))}
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.dispatchEvent(new CustomEvent("nav-scroll", { detail: "about" }));
+                }}
               >
                 About
               </a>
@@ -77,7 +86,10 @@ export default function FooterGlow() {
               <a
                 href="#contact"
                 className="transition hover:text-white"
-                onClick={() => window.dispatchEvent(new CustomEvent("nav-select", { detail: "contact" }))}
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.dispatchEvent(new CustomEvent("nav-scroll", { detail: "contact" }));
+                }}
               >
                 Contact
               </a>

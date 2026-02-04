@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { MenuBar } from "@/components/animated-menu-bar";
 import FooterGlow from "@/components/footer-glow";
@@ -17,35 +17,10 @@ const HeaderBar: React.FC = () => {
   const [active, setActive] = useState<MenuItem>("home");
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    const setFromHash = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash === "about") setActive("about");
-      else if (hash === "contact") setActive("contact");
-      else setActive("home");
-    };
-    handleScroll();
-    setFromHash();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("hashchange", setFromHash);
-    const handleNavSelect = (event: Event) => {
-      const detail = (event as CustomEvent).detail as MenuItem | undefined;
-      if (detail) setActive(detail);
-    };
-    window.addEventListener("nav-select", handleNavSelect as EventListener);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("hashchange", setFromHash);
-      window.removeEventListener("nav-select", handleNavSelect as EventListener);
-    };
-  }, []);
-
-  const handleSelect = (item: MenuItem) => {
+  const handleSelect = useCallback((item: MenuItem) => {
     setActive(item);
     if (item === "home") {
+      window.history.replaceState(null, "", window.location.pathname);
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
@@ -53,9 +28,27 @@ const HeaderBar: React.FC = () => {
     if (el) {
       const offset = 96;
       const y = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.history.replaceState(null, "", `${window.location.pathname}#${item}`);
       window.scrollTo({ top: y, behavior: "smooth" });
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    const handleNavScroll = (event: Event) => {
+      const detail = (event as CustomEvent).detail as MenuItem | undefined;
+      if (detail) handleSelect(detail);
+    };
+    window.addEventListener("nav-scroll", handleNavScroll as EventListener);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("nav-scroll", handleNavScroll as EventListener);
+    };
+  }, [handleSelect]);
 
   return (
     <header
@@ -92,11 +85,11 @@ const HeroSection: React.FC = () => {
         <img
           src="/Cedric.jpg"
           alt="avatar"
-          className="relative h-[22rem] w-[22rem] rounded-full border-4 border-zinc-800 shadow-xl z-10"
+          className="relative h-[22rem] w-[22rem] rounded-full border-4 border-zinc-800 shadow-xl z-10 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_25px_70px_-30px_rgba(56,189,248,0.5)]"
         />
       </div>
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight font-geist drop-shadow-lg">
-        Hi, I'm Cedric
+        Hi, I'm <span className="text-cyan-300/80">Cedric</span>
       </h1>
       <p className="text-xl md:text-2xl text-zinc-300 max-w-lg mx-auto font-inter font-normal">
         I build mobile apps as business solutions to real-world problems, focusing on clarity, usability, and impact.
@@ -155,7 +148,7 @@ const AboutBlock = ({ className }: { className?: string }) => (
 
 const HighlightsBlock = () => (
   <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
-    <div className="h-full rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 via-zinc-950/80 to-black/80 p-5 shadow-lg backdrop-blur-sm">
+    <div className="h-full rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 via-zinc-950/80 to-black/80 p-5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-25px_rgba(56,189,248,0.35)] hover:border-cyan-400/40">
       <div className="text-sm uppercase tracking-widest text-cyan-300/80 font-semibold">
         Laundr Prototype
       </div>
@@ -173,7 +166,7 @@ const HighlightsBlock = () => (
       </div>
     </div>
     <div className="flex flex-col gap-4 h-full">
-      <div className="flex-1 rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 via-zinc-950/80 to-black/80 p-4 shadow-lg backdrop-blur-sm">
+      <div className="flex-1 rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 via-zinc-950/80 to-black/80 p-4 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-25px_rgba(56,189,248,0.35)] hover:border-cyan-400/40">
         <div className="text-sm uppercase tracking-widest text-cyan-300/80 font-semibold">
           Mobile Focus
         </div>
@@ -190,7 +183,7 @@ const HighlightsBlock = () => (
           </div>
         </div>
       </div>
-      <div className="flex-1 rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 via-zinc-950/80 to-black/80 p-4 shadow-lg backdrop-blur-sm">
+      <div className="flex-1 rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 via-zinc-950/80 to-black/80 p-4 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-25px_rgba(56,189,248,0.35)] hover:border-cyan-400/40">
         <div className="text-sm uppercase tracking-widest text-cyan-300/80 font-semibold">
           Leadership
         </div>
@@ -223,7 +216,7 @@ const TechStackBlock = () => (
     ].map((item) => (
       <span
         key={item}
-        className="rounded-full border border-white/10 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 px-4 py-2 text-sm font-medium text-zinc-200 backdrop-blur-sm"
+        className="rounded-full border border-white/10 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 px-4 py-2 text-sm font-medium text-zinc-200 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-cyan-400/60 hover:text-white hover:shadow-[0_10px_30px_-15px_rgba(56,189,248,0.6)]"
       >
         {item}
       </span>
@@ -240,7 +233,7 @@ const AboutMeSection = () => (
       <h2 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight font-geist">
         Building products that solve real problems.
       </h2>
-      <p className="mt-4 text-base md:text-lg text-zinc-300 max-w-2xl">
+      <p className="mt-4 text-base md:text-lg text-zinc-300 max-w-2xl mx-auto">
         I focus on turning real‑world pain points into practical mobile solutions.
         My goal is to become a successful tech startup CEO by building products that people genuinely rely on.
         I value clear UX, strong fundamentals, and consistent iteration from idea to launch.
