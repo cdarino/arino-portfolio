@@ -20,7 +20,7 @@ export default function FooterGlow() {
       `}</style>
 
       <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-8 rounded-2xl border border-white/10 bg-zinc-950/70 px-6 py-10 backdrop-blur-md md:flex-row md:items-start md:justify-between md:gap-12">
-        <div className="flex flex-col items-center md:items-start">
+        <div className="flex flex-col items-center md:items-start pl-6">
           <a
             href="#top"
             className="mb-4 flex items-center gap-3"
