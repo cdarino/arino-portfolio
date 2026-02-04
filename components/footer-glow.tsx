@@ -41,7 +41,7 @@ export default function FooterGlow() {
             </span>
           </a>
           <p className="mb-6 max-w-xs text-center text-sm text-zinc-300 md:text-left">
-            Cedric Ariño creates clean, modern web experiences with an eye for
+            I create clean, modern web experiences with an eye for
             detail, accessibility, and performance.
           </p>
           <div className="mt-2 flex gap-3 text-cyan-300">

@@ -85,7 +85,7 @@ const HeroSection: React.FC = () => {
         <img
           src="/Cedric.jpg"
           alt="avatar"
-          className="relative h-[22rem] w-[22rem] rounded-full border-4 border-zinc-800 shadow-xl z-10 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_25px_70px_-30px_rgba(56,189,248,0.5)]"
+          className="relative h-[22rem] w-[22rem] rounded-full border-4 border-zinc-800 shadow-xl z-10"
         />
       </div>
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight font-geist drop-shadow-lg">
@@ -341,9 +341,12 @@ const ConnectSection: React.FC = () => {
           Message sent!
         </div>
       )}
-      <div className="w-full grid grid-cols-1 gap-6 md:grid-cols-2">
-        <ContactInfoBlock />
-        <div className="w-full">
+      <div className="w-full grid grid-cols-1 gap-6 md:grid-cols-2 items-center">
+        <div className="relative">
+          <div className="absolute -inset-16 -z-10 rounded-full bg-gradient-to-tr from-cyan-500 via-purple-500 to-indigo-500 opacity-30 blur-[120px] animate-pulse-slow" />
+          <ContactInfoBlock />
+        </div>
+        <div className="w-full self-center">
           <p className="text-lg text-zinc-400 mb-4 max-w-md font-normal text-center md:text-left">
             Interested in collaborating, chatting about tech, or just saying hi? Send me a message below!
           </p>
@@ -396,7 +399,6 @@ export const PersonalLanding = () => {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(56,189,248,0.22),_transparent_55%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(168,85,247,0.22),_transparent_60%)]" />
-        <div className="absolute -top-40 -left-40 w-[620px] h-[620px] bg-gradient-to-tr from-cyan-500 via-purple-500 to-indigo-500 opacity-30 rounded-full blur-[120px] animate-pulse-slow" />
         <div className="absolute -bottom-48 -right-48 w-[640px] h-[640px] bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-500 opacity-25 rounded-full blur-[130px] animate-pulse-slow" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:64px_64px] opacity-25" />
         <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:28px_28px] opacity-10" />
